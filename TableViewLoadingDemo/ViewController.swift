@@ -10,7 +10,7 @@ class ViewController: UIViewController {
     var lastScrollOffset: CGFloat?
     var isScrollingUp = false
     var isDragging = false
-    var shouldApplySnapshotLater = false
+    var hasPendingChange = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,10 @@ class ViewController: UIViewController {
     }
 
     func applySnapshot() {
+        // NOTE: Trying to apply snapshot while user is dragging causes weird jumps, deferring snapshot application helps
         if isDragging  {
-            shouldApplySnapshotLater = true
+            print("applySnapshot - bailed")
+            hasPendingChange = true
             return
         }
 
@@ -55,15 +57,27 @@ class ViewController: UIViewController {
         snapshot.appendItems(dataProvider.models, toSection: .main)
 
         dataSource.defaultRowAnimation = .automatic
-        dataSource.apply(snapshot, animatingDifferences: true) {}
+
+        // NOTE: scrolling animation is fine if it is not top of content,
+        // otherwise if the first row is showing and the content is reloaded, the offset will jump to the very first content
+        let shouldAdjustScrollPosition = tableView.indexPathsForVisibleRows?.first(where: { $0.row == 0 }) != nil
+        let initialContentHeight = tableView.contentSize.height
+
+        dataSource.apply(snapshot, animatingDifferences: !shouldAdjustScrollPosition) {}
+
+        if shouldAdjustScrollPosition {
+            let finalContentHeight = tableView.contentSize.height
+            tableView.contentOffset.y += (finalContentHeight - initialContentHeight)
+        }
     }
 
     func applySnapshot(_ models: [Model]) {
         if isDragging  {
-            shouldApplySnapshotLater = true
+            hasPendingChange = true
             return
         }
 
+        // NOTE: Apply delta does not help with diff animation
         var snapshot = dataSource.snapshot()
         if snapshot.numberOfSections > 0, let firstItem = snapshot.itemIdentifiers(inSection: .main).first {
             snapshot.insertItems(models, beforeItem: firstItem)
@@ -77,7 +91,7 @@ class ViewController: UIViewController {
     }
 
     @objc func loadMore() {
-        guard !isLoading else { return }
+        guard !isLoading && !hasPendingChange else { return }
         isLoading = true
 
         print("loadMore")
@@ -101,6 +115,7 @@ extension ViewController: UITableViewDelegate {
         if let lastScrollOffset = lastScrollOffset {
             isScrollingUp = lastScrollOffset > offsetTop
         }
+        // NOTE: checking both scroll direction and offset to top reduces unexpected event trigger
         if isScrollingUp && offsetTop < 400 {
             loadMore()
         }
@@ -121,8 +136,8 @@ extension ViewController: UITableViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("scrollViewDidEndDragging")
         isDragging = false
-        if shouldApplySnapshotLater {
-            shouldApplySnapshotLater = false
+        if hasPendingChange {
+            hasPendingChange = false
             applySnapshot()
         }
     }
