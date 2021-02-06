@@ -10,7 +10,6 @@
 		78F95E2D25CE4CD300595076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F95E2C25CE4CD300595076 /* AppDelegate.swift */; };
 		78F95E2F25CE4CD300595076 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F95E2E25CE4CD300595076 /* SceneDelegate.swift */; };
 		78F95E3125CE4CD300595076 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F95E3025CE4CD300595076 /* ViewController.swift */; };
-		78F95E3425CE4CD300595076 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F95E3225CE4CD300595076 /* Main.storyboard */; };
 		78F95E3625CE4CD300595076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F95E3525CE4CD300595076 /* Assets.xcassets */; };
 		78F95E3925CE4CD300595076 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F95E3725CE4CD300595076 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		78F95E2C25CE4CD300595076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78F95E2E25CE4CD300595076 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		78F95E3025CE4CD300595076 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		78F95E3325CE4CD300595076 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78F95E3525CE4CD300595076 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F95E3825CE4CD300595076 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78F95E3A25CE4CD300595076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				78F95E2C25CE4CD300595076 /* AppDelegate.swift */,
 				78F95E2E25CE4CD300595076 /* SceneDelegate.swift */,
 				78F95E3025CE4CD300595076 /* ViewController.swift */,
-				78F95E3225CE4CD300595076 /* Main.storyboard */,
 				78F95E3525CE4CD300595076 /* Assets.xcassets */,
 				78F95E3725CE4CD300595076 /* LaunchScreen.storyboard */,
 				78F95E3A25CE4CD300595076 /* Info.plist */,
@@ -126,7 +123,6 @@
 			files = (
 				78F95E3925CE4CD300595076 /* LaunchScreen.storyboard in Resources */,
 				78F95E3625CE4CD300595076 /* Assets.xcassets in Resources */,
-				78F95E3425CE4CD300595076 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,14 +142,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		78F95E3225CE4CD300595076 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78F95E3325CE4CD300595076 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		78F95E3725CE4CD300595076 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +204,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -296,7 +284,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hk.guru.TableViewLoadingDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +303,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hk.guru.TableViewLoadingDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
